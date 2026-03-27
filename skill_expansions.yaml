@@ -1,0 +1,73 @@
+asr:
+- speech recognition
+- machine learning
+- deep learning
+- audio ml
+backend:
+- backend engineering
+- api development
+- server-side development
+backend engineering:
+- backend
+- api development
+- distributed systems
+deep learning:
+- dl
+- neural networks
+- machine learning
+dl:
+- deep learning
+- neural networks
+docker:
+- containers
+- deployment
+- platform engineering
+fastapi:
+- python api
+- backend engineering
+- rest api
+information retrieval:
+- search
+- retrieval systems
+- ranking
+kubernetes:
+- container orchestration
+- deployment
+- cloud infrastructure
+machine learning:
+- ml
+- model training
+- applied machine learning
+microservices:
+- backend engineering
+- distributed systems
+- rest api
+- service architecture
+ml:
+- machine learning
+natural language processing:
+- nlp
+- text processing
+- machine learning
+nlp:
+- natural language processing
+- text processing
+- language models
+rag:
+- retrieval augmented generation
+- information retrieval
+- vector database
+- llm application
+retrieval augmented generation:
+- rag
+- information retrieval
+- vector database
+speech recognition:
+- asr
+- machine learning
+- deep learning
+- audio ml
+text-to-sql:
+- nlp
+- semantic parsing
+- machine learning

@@ -1,0 +1,66 @@
+You are extracting hiring requirements from a job description for downstream candidate matching.
+
+Your job is to identify what the employer is asking for, not what a candidate might incidentally know.
+Treat this as a requirements-normalization task for ranking resumes.
+
+JOB DESCRIPTION:
+{{ jd }}
+
+COMPANY VALUES:
+{{ values }}
+
+Return ONLY valid JSON using this exact schema:
+{
+  "role_type": "<technical|non_technical>",
+  "core_skills": ["<primary hard skill, tool, framework, platform, domain, or qualification from the JD>", ...],
+  "adjacent_skills": ["<closely related canonical skill that is strongly implied by the JD>", ...],
+  "skill_expansions": {
+    "<core skill from the JD>": ["<closely related canonical term strongly implied by that core skill>", ...]
+  },
+  "soft_skills": ["<communication, leadership, collaboration, ownership, problem solving, or other people skill from the JD>", ...],
+  "value_keywords": ["<company value, behavior, or culture signal>", ...]
+}
+
+Rules:
+- Think in terms of hiring requirements, screening criteria, and resume matching signals.
+- `role_type` should be `technical` for engineering, data, AI/ML, analytics, product-tech, DevOps, security, cloud, or similarly technical roles. Otherwise use `non_technical`.
+- Prefer short phrases over full sentences.
+- Keep only distinct, recruiter-useful keywords.
+- `core_skills` must come only from the job description.
+- `core_skills` should represent the highest-signal hard requirements that should influence early-stage screening.
+- Include languages, frameworks, infrastructure, ML domains, backend domains, data domains, and qualifications only if they materially affect candidate relevance.
+- `adjacent_skills` may include close, canonical skills that are strongly implied by the JD even if not written verbatim.
+- `adjacent_skills` are for normalization and retrieval help, not for inventing extra requirements. They should stay near the wording of the JD.
+- `skill_expansions` should map only the strongest JD hard skills to 1-4 close related skills or canonical aliases.
+- `skill_expansions` should help matching, for example:
+  - `asr` -> `speech recognition`, `machine learning`, `deep learning`
+  - `microservices` -> `backend engineering`, `distributed systems`, `rest api`
+  - `rag` -> `information retrieval`, `vector database`, `llm application`
+- Good examples:
+  - ASR / speech recognition can imply machine learning, deep learning, audio pipelines, model training.
+  - microservices can imply backend engineering, REST APIs, distributed systems, service communication.
+  - RAG can imply vector databases, retrieval systems, LLM application development.
+- Do not invent distant or speculative skills. Only include adjacent skills if a strong recruiter would reasonably infer them.
+- Keep `skill_expansions` tightly scoped to the JD and avoid generic terms like `software`, `technology`, or `engineering`.
+- `soft_skills` must come only from the job description.
+- `soft_skills` should capture collaboration, communication, leadership, ownership, prioritization, and execution expectations when clearly stated.
+- `value_keywords` should come from company values.
+- If company values are empty, return an empty array for `value_keywords`.
+- Limit `core_skills` to at most 12 items.
+- Limit `adjacent_skills` to at most 10 items.
+- Limit `skill_expansions` to at most 8 keys.
+- Limit `soft_skills` to at most 8 items.
+- Do not include generic filler like "experience", "role", "team", "candidate", "job", or "opportunity".
+- Never return document labels or section headers as skills. Exclude terms like:
+  - `job`
+  - `description`
+  - `job description`
+  - `responsibilities`
+  - `qualifications`
+  - `requirements`
+  - `summary`
+  - `about us`
+  - `preferred qualifications`
+  - `nice to have`
+- If a term is just a heading, label, or formatting phrase rather than a real hiring signal, exclude it.
+- If the JD is broad, prefer fewer, higher-signal items over a long noisy list.

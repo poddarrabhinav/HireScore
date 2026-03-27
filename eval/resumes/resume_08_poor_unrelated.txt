@@ -1,0 +1,26 @@
+THOMAS BRANDT
+thomas.brandt@email.com | Munich, Germany
+
+SUMMARY
+Mechanical engineer with 8 years of experience in automotive powertrain design and CAD modeling. Strong background in thermodynamics and fluid simulation.
+
+EXPERIENCE
+
+Senior Mechanical Engineer — BMW Group (2019–present)
+- Designed combustion engine components using CATIA V5 and ANSYS simulation
+- Led thermal analysis for EV battery cooling systems
+- Collaborated with cross-functional teams across Germany and China
+
+Mechanical Engineer — Bosch (2015–2019)
+- Developed fuel injection system prototypes; reduced NOx emissions by 18%
+- Performed FEA stress analysis on structural components
+- Documented engineering changes in compliance with ISO 9001
+
+SKILLS
+CATIA V5, SolidWorks, ANSYS, MATLAB (simulation), AutoCAD, GD&T, ISO 9001, German (native), English (fluent)
+
+EDUCATION
+M.Eng. Mechanical Engineering — TU Munich, 2015
+
+NOTES
+No software engineering experience. No Python. No data science or machine learning background. Exploring career transition into technology sector.

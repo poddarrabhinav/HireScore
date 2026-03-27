@@ -1,0 +1,32 @@
+Senior Machine Learning Engineer — Generative AI Platform
+
+We are looking for a Senior ML Engineer to join our Generative AI Platform team. You will
+design, build, and ship production-grade LLM-powered systems that are used by millions of
+users daily.
+
+Responsibilities:
+- Design and implement end-to-end LLM pipelines including retrieval-augmented generation
+  (RAG), prompt engineering, and fine-tuning workflows.
+- Build scalable inference infrastructure for large language models (LLMs) using Python,
+  FastAPI, and cloud platforms (AWS or GCP).
+- Collaborate with product and data teams to define evaluation metrics and run offline/online
+  experiments.
+- Integrate vector databases (Pinecone, Weaviate, pgvector) for semantic search and
+  long-term memory.
+- Own model evaluation frameworks: A/B testing, RLHF feedback pipelines, LLM-as-judge setups.
+- Write clean, well-tested Python code following engineering best practices.
+
+Requirements:
+- 5+ years of software engineering experience, with 3+ years in ML/AI systems.
+- Strong Python skills: async, type hints, pytest, dataclasses, Pydantic.
+- Experience building and deploying transformer-based models (BERT, GPT, LLaMA, Mistral).
+- Hands-on experience with the Hugging Face ecosystem (transformers, datasets, PEFT).
+- Familiarity with vector search, embeddings, and cosine similarity at scale.
+- Experience with MLOps tooling: MLflow, Weights & Biases, or similar.
+- Solid understanding of distributed systems and REST API design.
+
+Nice to have:
+- Experience with multi-modal models (vision-language).
+- Contributions to open-source ML projects.
+- Knowledge of CUDA, quantization (GPTQ, AWQ), or inference optimization (vLLM, TensorRT).
+- Prior work on recommendation systems or information retrieval.

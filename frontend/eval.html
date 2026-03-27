@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeAI Evaluation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body class="settings-page-body">
+  <div class="settings-shell">
+    <div class="settings-page-card">
+      <div class="settings-page-header">
+        <div>
+          <div class="panel-kicker">Evaluation</div>
+          <h1>Run Eval</h1>
+          <p>Upload the JD, a ZIP of resumes, and a JSON file containing the expected final scores. The app will run the pipeline and compare predicted vs target scores.</p>
+        </div>
+        <a class="nav-link settings-back-link" href="/" target="_blank" rel="noreferrer">Open scorer</a>
+      </div>
+
+      <div id="eval-status" class="settings-status" hidden></div>
+
+      <div class="eval-mode-note">
+        <strong>Input mode:</strong> provide either pasted JD text or a JD file. The eval run will reject requests that include both.
+      </div>
+
+      <div class="settings-form-grid">
+        <label class="settings-field settings-field-wide">
+          <span>Job description text</span>
+          <textarea id="eval-jd-text" class="input settings-textarea" spellcheck="false" style="min-height: 180px;"></textarea>
+        </label>
+
+        <label class="settings-field">
+          <span>JD file (optional)</span>
+          <input id="eval-jd-file" class="input settings-input" type="file" accept=".pdf,.txt" />
+        </label>
+
+        <label class="settings-field">
+          <span>Company values file/text optional</span>
+          <input id="eval-values-file" class="input settings-input" type="file" accept=".pdf,.txt" />
+        </label>
+
+        <label class="settings-field">
+          <span>Resume ZIP</span>
+          <input id="eval-zip-file" class="input settings-input" type="file" accept=".zip" />
+        </label>
+
+        <label class="settings-field">
+          <span>Scores JSON</span>
+          <input id="eval-labels-file" class="input settings-input" type="file" accept=".json" />
+        </label>
+      </div>
+
+      <div class="settings-actions">
+        <button id="run-eval" class="btn-score settings-primary" type="button">Run evaluation</button>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <div id="eval-results" hidden>
+        <div class="settings-page-header settings-subsection-header">
+          <div>
+            <div class="panel-kicker">Results</div>
+            <h2>Evaluation Summary</h2>
+          </div>
+        </div>
+        <div id="eval-metrics" class="stats-grid"></div>
+        <div class="table-wrap" style="margin-top: 18px;">
+          <div class="table-header">
+            <span class="table-title">Predicted vs target</span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Filename</th>
+                <th>Predicted</th>
+                <th>Target</th>
+                <th>Abs Error</th>
+                <th>Rank</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="eval-comparisons"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/eval.js"></script>
+</body>
+</html>

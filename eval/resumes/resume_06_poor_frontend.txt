@@ -1,0 +1,26 @@
+RYAN PARK
+ryan.park@email.com | Seattle, WA
+
+SUMMARY
+Frontend engineer with 5 years of experience building React applications and design systems. Passionate about UI/UX and accessible web experiences.
+
+EXPERIENCE
+
+Senior Frontend Engineer — Shopify (2021–present)
+- Led migration of checkout flow to React 18 with concurrent rendering; improved LCP by 35%
+- Built and maintained internal design system used by 30+ engineers
+- Integrated third-party APIs including Stripe and Klaviyo
+
+Frontend Engineer — Agency X (2019–2021)
+- Delivered 15+ client websites using React, Next.js, and Tailwind CSS
+- Implemented complex animations with Framer Motion and GSAP
+- Collaborated with designers in Figma to pixel-perfect implementation
+
+SKILLS
+JavaScript, TypeScript, React, Next.js, Vue.js, HTML, CSS, Tailwind, Figma, Webpack, Jest, Cypress, Node.js (basic), Git
+
+EDUCATION
+B.A. Graphic Design — Seattle Pacific University, 2019
+
+NOTES
+No Python experience. No machine learning background whatsoever. Interested in pivoting to AI product development in the future.

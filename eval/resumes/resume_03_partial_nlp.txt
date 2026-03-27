@@ -1,0 +1,28 @@
+MARCUS ADEYEMI
+marcus.adeyemi@email.com | London, UK
+
+SUMMARY
+NLP researcher and engineer with 3 years of experience in text classification, named entity recognition, and information extraction. Strong academic background; transitioning from research to industry.
+
+EXPERIENCE
+
+NLP Engineer — TextMind Ltd (2022–present)
+- Built information extraction pipeline using spaCy for contract analysis (NER, relation extraction)
+- Trained BERT-based classifiers for legal document categorization; 91% accuracy
+- Developed text preprocessing toolkit used by 5 internal teams
+- Wrote documentation and ran onboarding sessions for new hires
+
+Research Assistant — University of Edinburgh NLP Lab (2020–2022)
+- Published paper on cross-lingual transfer learning for low-resource languages (ACL 2022)
+- Implemented baseline models in PyTorch for named entity recognition
+- Maintained lab codebase and datasets
+
+SKILLS
+Python, PyTorch, spaCy, NLTK, HuggingFace Transformers, BERT, scikit-learn, pandas, Linux, Git
+
+EDUCATION
+M.Sc. Natural Language Processing — University of Edinburgh, 2020
+B.Sc. Mathematics — University of Lagos, 2018
+
+NOTES
+No production LLM deployment experience. No experience with RAG systems or vector databases. Open to learning generative AI stack.

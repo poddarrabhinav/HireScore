@@ -1,0 +1,28 @@
+JORDAN CHEN
+jordan.chen@email.com | github.com/jordanchen | San Francisco, CA
+
+SUMMARY
+ML Engineer with 5 years of experience building production LLM pipelines and RAG systems. Led a team of 4 to deploy a document understanding system handling 2M documents/day at Acme Corp. Deep expertise in PyTorch, transformer fine-tuning, and vector databases.
+
+EXPERIENCE
+
+Senior ML Engineer — Acme Corp (2021–present)
+- Built and owned a production RAG pipeline using SBERT + Qdrant, reducing support ticket resolution time by 40%
+- Fine-tuned LLaMA-2 13B for domain-specific document classification; achieved 94% F1 vs 81% GPT-3.5 baseline
+- Led migration from batch inference to real-time serving using TorchServe; p99 latency reduced from 4.2s to 340ms
+- Mentored 3 junior engineers; introduced weekly paper readings and internal ML blog
+
+ML Engineer — Nexus Labs (2019–2021)
+- Developed NLP pipeline for contract analysis using spaCy + BERT; deployed on AWS SageMaker
+- Reduced model training time 3x via gradient checkpointing and mixed precision training
+- Contributed to open-source: merged 2 PRs into Hugging Face Transformers
+
+SKILLS
+Python, PyTorch, TensorFlow, SBERT, LangChain, LlamaIndex, Qdrant, Pinecone, AWS (SageMaker, Lambda, S3), Docker, Kubernetes, FastAPI, PostgreSQL, Redis
+
+EDUCATION
+M.S. Computer Science (ML track) — Stanford University, 2019
+
+PROJECTS
+- Resume-RAG: Open-source RAG system with 400+ GitHub stars
+- LLM Eval Harness: Evaluation framework for comparing LLM outputs on domain tasks
