@@ -1,4 +1,4 @@
-# Resume Scorer
+# HireScore
 
 Resume Scorer is a FastAPI-based resume ranking prototype that matches resumes against a job description using a three-stage pipeline:
 
@@ -72,15 +72,14 @@ This keeps the live demo focused on screening outcomes rather than exposing tuni
 
 ## Prompt Templates
 
-Prompt templates live in [/Users/sidpoddra/Desktop/ResumeScorer/prompts](/Users/sidpoddra/Desktop/ResumeScorer/prompts):
-
+Prompt templates live in [prompts/]
 - [judge_prompt.jinja](/Users/sidpoddra/Desktop/ResumeScorer/prompts/judge_prompt.jinja)
 - [keyword_prompt.jinja](/Users/sidpoddra/Desktop/ResumeScorer/prompts/keyword_prompt.jinja)
 
 ## Project Structure
 
 ```text
-ResumeScorer/
+HireScore/
 ├── app/
 │   ├── main.py
 │   ├── config.py
@@ -157,7 +156,7 @@ Configured in:
 
 ### Parser Debug Output
 Parsed PDF text is written to:
-- [/Users/sidpoddra/Desktop/ResumeScorer/temp/parser_debug](/Users/sidpoddra/Desktop/ResumeScorer/temp/parser_debug)
+- [/Users/sidpoddra/Desktop/HireScore/temp/parser_debug](/Users/sidpoddra/Desktop/ResumeScorer/temp/parser_debug)
 
 This is useful for debugging extraction quality.
 
@@ -207,13 +206,11 @@ The app will run the current pipeline and return:
 
 - Resume extraction still depends on `pdfminer`; scanned PDFs need OCR
 - JD-side LLM keyword extraction can still introduce noisy adjacent skills if prompts are too broad
-- The evaluation set is synthetic / manually curated
-- The single-candidate judge depends on `OPENAI_API_KEY`
-- Stage 1 internal score fields still use some legacy names for compatibility, even though the logic is now skill-match based
+- The single-candidate judge depends on single judge
+- Stage 1 internal score fields still use some legacy names for compatibility, though the logic is now skill-match based
 
 ## Next Improvements
 
-- Rename remaining legacy `bm25_*` internal fields to `skill_match_*`
 - Add skill ontology / canonical mapping file instead of only prompt-driven inference
 - Cache JD keyword extraction results
 - Add offline evaluation summaries for multiple role families
