@@ -24,8 +24,8 @@ scoring:
   exact_skill_weight: 0.5
   fuzzy_skill_weight: 0.2
   embedding_skill_weight: 0.3
-  bm25_weight: 0.25
-  semantic_weight: 0.75
+  bm25_weight: 0.4
+  semantic_weight: 0.6
   alpha: 0.4
   beta: 0.6
 

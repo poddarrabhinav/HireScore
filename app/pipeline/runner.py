@@ -213,7 +213,8 @@ async def run_pipeline(
         r["final_score"] = r.get("combined_score", 0.0)
 
     all_results = s3_pass + s3_elim + s2_elim + s1_elim
-    all_results.sort(key=lambda x: x.get("final_score", 0.0), reverse=True)
+    # Passed candidates always rank above eliminated ones; within each group sort by score
+    all_results.sort(key=lambda x: (0 if not x.get("stage_eliminated") else 1, -x.get("final_score", 0.0)))
     for i, r in enumerate(all_results):
         r["rank"] = i + 1
 
