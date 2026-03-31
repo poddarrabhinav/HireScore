@@ -234,9 +234,9 @@ function ExpandPanel({ result }) {
         </>
       ) : (
         <div className="no-llm-note">
-          LLM judge was not run for this candidate
+          Agent was not run for this candidate
           {result.stage_eliminated ? ` (eliminated at Stage ${result.stage_eliminated})` : ''}.
-          Enable LLM Judge and re-score to get strengths, weaknesses, and a hiring verdict.
+          Enable Agent and re-score to get strengths, weaknesses, and a hiring verdict.
         </div>
       )}
     </div>
@@ -289,16 +289,16 @@ function ResultRow({ result, expanded, onToggle, onJudge, judging }) {
           <ScoreCell value={ss.combined_score} />
         </td>
         <td>
-          <span style={{ fontWeight: 700, fontSize: 14, color: scoreColor(result.final_score) }}>
-            {fmtScore(result.final_score)}
-          </span>
-        </td>
-        <td>
           {ss.llm_score != null
             ? <ScoreCell value={ss.llm_score} />
             : <span style={{ color: 'var(--text-light)', fontSize: 11 }}>
                 {canJudge ? <span style={{ color: 'var(--success)' }}>available</span> : '—'}
               </span>}
+        </td>
+        <td>
+          <span style={{ fontWeight: 700, fontSize: 14, color: scoreColor(result.final_score) }}>
+            {fmtScore(result.final_score)}
+          </span>
         </td>
         <td><StatusBadge stageEliminated={result.stage_eliminated} /></td>
         <td>
@@ -319,7 +319,7 @@ function ResultRow({ result, expanded, onToggle, onJudge, judging }) {
 
 /* ─── Download CSV ───────────────────────────────────────────────────────── */
 function downloadCSV(results) {
-  const cols = ['Rank','Filename','Stage 1','Match','Final','LLM','Status','Matched Skills','Missing Skills','Verdict'];
+  const cols = ['Rank','Filename','Stage 1','Match','Agent','Final','Status','Matched Skills','Missing Skills','Verdict'];
   const rows = results.map(r => {
     const ss = r.stage_scores || {};
     return [
@@ -327,8 +327,8 @@ function downloadCSV(results) {
       r.filename,
       fmtScore(ss.bm25_score),
       fmtScore(ss.combined_score),
-      fmtScore(r.final_score),
       fmtScore(ss.llm_score),
+      fmtScore(r.final_score),
       r.stage_eliminated ? `Stage ${r.stage_eliminated}` : 'Passed',
       (r.key_skills || []).join('; '),
       (r.missing_skills || []).join('; '),
@@ -375,8 +375,8 @@ function ResultsTable({ results, onJudge, judgingSet }) {
             <th>Filename</th>
             <th>Stage 1</th>
             <th>Match</th>
+            <th>Agent</th>
             <th>Final</th>
-            <th>LLM</th>
             <th>Status</th>
             <th>Details</th>
           </tr>
@@ -676,7 +676,7 @@ function App() {
                 <strong>{responseStats?.role_type || '—'}</strong>
               </div>
               <div className="hero-meta-card">
-                <span>LLM</span>
+                <span>Agent</span>
                 <strong>{llm ? 'Enabled' : 'Disabled'}</strong>
               </div>
               <div className="hero-meta-card">
@@ -720,7 +720,7 @@ function App() {
               <div className="empty-title">Scoring resumes…</div>
               <div className="empty-desc">
                 Running skill match + semantic relevance
-                {llm ? ', then LLM judge on survivors' : ''}.
+                {llm ? ', then Agent on survivors' : ''}.
                 This may take a moment.
               </div>
             </div>
@@ -744,7 +744,7 @@ function App() {
                 </div>
                 <div className="stat-card">
                   <div className="stat-val">{responseStats.stage3_evaluated}</div>
-                  <div className="stat-lbl">LLM Evaluated</div>
+                  <div className="stat-lbl">Agent Evaluated</div>
                 </div>
                 <div className="stat-card">
                   <div className="stat-val" style={{ color: '#10B981' }}>{responseStats.stage3_survivors}</div>

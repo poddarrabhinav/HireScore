@@ -254,11 +254,11 @@ body {
 
 .toggle-pill {
   display: inline-flex;
-  gap: 4px;
-  padding: 4px;
-  border-radius: 8px;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 4px;
   background: rgba(9, 13, 18, 0.55);
-  border: 1px solid rgba(170, 159, 140, 0.14);
+  border: 1px solid rgba(170, 159, 140, 0.22);
   margin-bottom: 12px;
 }
 
@@ -267,17 +267,18 @@ body {
   background: transparent;
   color: rgba(216, 230, 251, 0.62);
   font-size: 12px;
-  font-weight: 800;
-  padding: 8px 14px;
-  border-radius: 6px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 2px;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  letter-spacing: 0.03em;
+  transition: background 0.12s ease, color 0.12s ease;
 }
 
 .toggle-opt.active {
-  background: linear-gradient(180deg, rgba(15, 118, 110, 0.22), rgba(15, 118, 110, 0.08));
-  color: #f8fbff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  background: rgba(15, 118, 110, 0.28);
+  color: #e4f6f2;
+  border: 1px solid rgba(45, 212, 191, 0.18);
 }
 
 textarea.input,
@@ -685,26 +686,28 @@ input.input:focus {
 
 .btn-score {
   width: 100%;
-  height: 52px;
+  height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+  border: 1px solid rgba(29, 78, 216, 0.6);
+  border-radius: 4px;
+  background: linear-gradient(180deg, #1d4ed8, #1a40b8);
   color: #f8fbff;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.32);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.28);
+  transition: background 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
 }
 
 .btn-score:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.38);
+  background: linear-gradient(180deg, #2563eb, #1d4ed8);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.34);
 }
 
 .btn-score:disabled {
@@ -905,21 +908,21 @@ input.input:focus {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  height: 34px;
+  height: 32px;
   padding: 0 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: rgba(250, 248, 243, 0.96);
+  border-radius: 3px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
   color: var(--text);
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   cursor: pointer;
-  transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+  transition: border-color 0.12s ease, background 0.12s ease;
 }
 
 .btn-download:hover {
-  transform: translateY(-1px);
-  border-color: var(--border-strong);
+  border-color: var(--accent);
   background: var(--surface-alt);
 }
 
@@ -966,9 +969,9 @@ tbody tr.expand-row td {
 }
 
 .rank-bubble {
-  width: 30px;
-  height: 30px;
-  border-radius: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1010,22 +1013,22 @@ tbody tr.expand-row td {
   align-items: center;
   justify-content: center;
   min-width: 84px;
-  height: 32px;
-  padding: 0 12px;
-  border: 1px solid rgba(16, 185, 129, 0.24);
-  border-radius: 12px;
-  background: rgba(16, 185, 129, 0.08);
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid rgba(16, 185, 129, 0.34);
+  border-radius: 3px;
+  background: rgba(16, 185, 129, 0.06);
   color: #059669;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  transition: background 0.12s ease, border-color 0.12s ease;
 }
 
 .judge-run-btn:hover {
-  transform: translateY(-1px);
   background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.34);
+  border-color: rgba(16, 185, 129, 0.5);
 }
 
 .rank-spinner {
@@ -1066,9 +1069,9 @@ tbody tr.expand-row td {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 24px;
-  padding: 0 10px;
-  border-radius: 999px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 3px;
   border: 1px solid transparent;
   font-size: 10px;
   font-weight: 800;
