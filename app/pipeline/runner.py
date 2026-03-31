@@ -3,13 +3,11 @@ import logging
 
 from app.config import get_config
 
-from .stage1_skill_match import compute_bm25_scores
+from .stage1_skill_match import compute_ats_scores, compute_bm25_scores
 from .stage2_sbert import (
     compute_sbert_scores,
-    get_embedding_device,
     get_default_embedding_profile,
     get_embedding_profiles,
-    get_model,
     resolve_embedding_profile,
 )
 from .stage3_agent import extract_keywords, extract_resume_keywords, load_openai_client, score_stage3_batch
@@ -53,14 +51,13 @@ def get_embedding_profile_options() -> list[dict[str, str]]:
 
 
 def init_pipeline() -> None:
-    """Load models at startup (called from FastAPI lifespan)."""
+    """Initialize pipeline at startup (called from FastAPI lifespan)."""
     global _llm_client
-    get_model(get_default_embedding_profile())
     _llm_client = load_openai_client()
     if _llm_client:
-        logger.info("LLM judge enabled (OpenAI).")
+        logger.info("LLM judge + OpenAI embeddings enabled.")
     else:
-        logger.info("LLM judge disabled - set OPENAI_API_KEY to enable.")
+        logger.info("OPENAI_API_KEY not set — LLM judge and OpenAI embeddings disabled.")
 
 
 async def run_pipeline(
@@ -73,6 +70,7 @@ async def run_pipeline(
     use_llm: bool = True,
     embedding_profile: str | None = None,
     excluded_skills: list[str] | None = None,
+    stage1_mode: str | None = None,
 ) -> dict:
     """
     Three-stage resume scoring pipeline.
@@ -84,6 +82,7 @@ async def run_pipeline(
     scoring = config["scoring"]
     selected_profile = resolve_embedding_profile(embedding_profile)
     stage1_threshold = scoring["stage1_threshold"] if stage1_threshold is None else stage1_threshold
+    resolved_stage1_mode = stage1_mode if stage1_mode in ("skill_match", "ats") else scoring.get("stage1_mode", "skill_match")
     stage2_threshold = scoring["stage2_threshold"] if stage2_threshold is None else stage2_threshold
     stage3_threshold = scoring["stage3_threshold"] if stage3_threshold is None else stage3_threshold
 
@@ -140,7 +139,8 @@ async def run_pipeline(
         for resume, keywords in zip(resumes, extracted_resume_keywords)
     }
 
-    bm25_scores, key_skills = compute_bm25_scores(
+    stage1_scorer = compute_ats_scores if resolved_stage1_mode == "ats" else compute_bm25_scores
+    bm25_scores, key_skills = stage1_scorer(
         jd_text,
         resumes,
         core_skills=filtered_core_skills,
@@ -234,17 +234,17 @@ async def run_pipeline(
             "value_keywords": extracted_keywords.get("value_keywords", []),
             "excluded_skills": sorted(excluded_skills_normalized),
             "role_type": role_type,
+            "stage1_mode": resolved_stage1_mode,
             "bm25_weight": bm25_weight,
             "semantic_weight": semantic_weight,
             "alpha": alpha,
             "beta": beta,
             "embedding_profile": selected_profile,
             "embedding_model": selected_profile_config.get("model_name", ""),
-            "embedding_device": get_embedding_device(),
             "semantic_scoring_summary": (
                 f"Semantic scoring uses a focused query built from role type, extracted JD skills, and a condensed JD summary "
                 f"against each full resume text "
-                f"with {selected_profile_config.get('model_name', '')} on {get_embedding_device()}."
+                f"with OpenAI {selected_profile_config.get('model_name', '')}."
             ),
             "semantic_query_preview": semantic_query_text[:280],
             "embedding_options": get_embedding_profile_options(),

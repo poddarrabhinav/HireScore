@@ -4,6 +4,7 @@
   const stage1El = document.getElementById('stage1-threshold');
   const stage2El = document.getElementById('stage2-threshold');
   const stage3El = document.getElementById('stage3-threshold');
+  const stage1ModeEl = document.getElementById('stage1-mode');
   const embeddingEl = document.getElementById('embedding-profile');
   const llmEl = document.getElementById('use-llm');
   const saveBtn = document.getElementById('save-settings');
@@ -17,11 +18,12 @@
     stage1Threshold: 0.30,
     stage2Threshold: 0.30,
     stage3Threshold: 0.30,
+    stage1Mode: 'skill_match',
     useLlm: true,
-    embeddingProfile: 'small',
+    embeddingProfile: 'openai-small',
     embeddingOptions: [
-      { value: 'small', label: 'Small' },
-      { value: 'medium', label: 'Medium' },
+      { value: 'openai-small', label: 'OpenAI text-embedding-3-small' },
+      { value: 'openai-large', label: 'OpenAI text-embedding-3-large' },
     ],
   };
 
@@ -65,6 +67,7 @@
     stage1El.value = values.stage1Threshold.toFixed(2);
     stage2El.value = values.stage2Threshold.toFixed(2);
     stage3El.value = values.stage3Threshold.toFixed(2);
+    stage1ModeEl.value = values.stage1Mode || 'skill_match';
     llmEl.checked = !!values.useLlm;
     populateOptions(values.embeddingOptions || defaults.embeddingOptions, values.embeddingProfile);
   }
@@ -90,6 +93,7 @@
         stage1Threshold: Number(data.stage1_threshold ?? 0.30),
         stage2Threshold: Number(data.stage2_threshold ?? 0.30),
         stage3Threshold: Number(data.stage3_threshold ?? 0.30),
+        stage1Mode: data.stage1_mode || 'skill_match',
         useLlm: Boolean(data.use_llm ?? true),
         embeddingProfile: data.embedding_profile || 'small',
         embeddingOptions: Array.isArray(data.embedding_options) && data.embedding_options.length
@@ -109,6 +113,7 @@
       stage1Threshold: clamp(stage1El.value, 0, 0.95, defaults.stage1Threshold),
       stage2Threshold: clamp(stage2El.value, 0, 0.95, defaults.stage2Threshold),
       stage3Threshold: clamp(stage3El.value, 0, 0.95, defaults.stage3Threshold),
+      stage1Mode: stage1ModeEl.value || 'skill_match',
       useLlm: !!llmEl.checked,
       embeddingProfile: embeddingEl.value || defaults.embeddingProfile,
     };
@@ -124,6 +129,7 @@
       stage1Threshold: defaults.stage1Threshold,
       stage2Threshold: defaults.stage2Threshold,
       stage3Threshold: defaults.stage3Threshold,
+      stage1Mode: defaults.stage1Mode,
       useLlm: defaults.useLlm,
       embeddingProfile: defaults.embeddingProfile,
     });

@@ -5,8 +5,9 @@ const DEFAULT_UI_SETTINGS = {
   stage1Threshold: 0.30,
   stage2Threshold: 0.30,
   stage3Threshold: 0.30,
+  stage1Mode: 'skill_match',
   useLlm: true,
-  embeddingProfile: 'small',
+  embeddingProfile: 'openai-small',
 };
 
 function loadUiSettings() {
@@ -417,6 +418,7 @@ function App() {
   const [s1] = useState(initialSettings.stage1Threshold);
   const [s2] = useState(initialSettings.stage2Threshold);
   const [s3] = useState(initialSettings.stage3Threshold);
+  const [stage1Mode] = useState(initialSettings.stage1Mode || 'skill_match');
   const [llm] = useState(initialSettings.useLlm);
   const [embeddingProfile, setEmbeddingProfile] = useState(initialSettings.embeddingProfile);
   /* Scored results (mutable — updated by on-demand judge) */
@@ -458,6 +460,7 @@ function App() {
       fd.append('stage1_threshold', s1);
       fd.append('stage2_threshold', s2);
       fd.append('stage3_threshold', s3);
+      fd.append('stage1_mode', stage1Mode);
       fd.append('embedding_profile', embeddingProfile);
       fd.append('excluded_skills_json', JSON.stringify([]));
 
