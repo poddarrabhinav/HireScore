@@ -121,6 +121,7 @@ async def settings_data() -> dict:
         "stage1_threshold": _SCORING["stage1_threshold"],
         "stage2_threshold": _SCORING["stage2_threshold"],
         "stage3_threshold": _SCORING["stage3_threshold"],
+        "stage1_mode": _SCORING.get("stage1_mode", "skill_match"),
         "use_llm": True,
         "embedding_profile": get_default_embedding_profile(),
         "embedding_options": get_embedding_profile_options(),
@@ -184,6 +185,7 @@ async def score_batch(
     stage1_threshold: float = Form(default=_SCORING["stage1_threshold"]),
     stage2_threshold: float = Form(default=_SCORING["stage2_threshold"]),
     stage3_threshold: float = Form(default=_SCORING["stage3_threshold"]),
+    stage1_mode: str = Form(default=_SCORING.get("stage1_mode", "skill_match")),
     embedding_profile: str = Form(default=get_default_embedding_profile()),
     excluded_skills_json: str = Form(default="[]"),
     resumes: list[UploadFile] = File(...),
@@ -193,6 +195,8 @@ async def score_batch(
     stage1_threshold = max(0.0, min(10.0, float(stage1_threshold)))
     stage2_threshold = _clamp_threshold(stage2_threshold, _SCORING["stage2_threshold"])
     stage3_threshold = _clamp_threshold(stage3_threshold, _SCORING["stage3_threshold"])
+    if stage1_mode not in ("skill_match", "ats"):
+        stage1_mode = _SCORING.get("stage1_mode", "skill_match")
 
     try:
         excluded_skills = json.loads(excluded_skills_json or "[]")
@@ -251,6 +255,7 @@ async def score_batch(
         use_llm=use_llm,
         embedding_profile=embedding_profile,
         excluded_skills=excluded_skills,
+        stage1_mode=stage1_mode,
     )
 
     results = [_build_result(r) for r in pipeline_output["results"]]

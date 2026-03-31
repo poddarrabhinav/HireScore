@@ -39,7 +39,16 @@
         </label>
 
         <label class="settings-field">
-          <span>Embedding profile</span>
+          <span>Stage 1 scoring mode</span>
+          <select id="stage1-mode" class="input settings-input">
+            <option value="skill_match">Skill Match (exact + fuzzy + embedding)</option>
+            <option value="ats">ATS (keyword presence only)</option>
+          </select>
+          <div class="field-helper">ATS mode is faster and simpler — keyword presence only. Skill Match uses fuzzy and embedding similarity for more nuanced matching.</div>
+        </label>
+
+        <label class="settings-field">
+          <span>Embedding profile (Stage 2)</span>
           <select id="embedding-profile" class="input settings-input"></select>
         </label>
       </div>

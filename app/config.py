@@ -13,17 +13,17 @@ DEFAULT_CONFIG = {
         "max_concurrency": 5,
     },
     "embeddings": {
-        "default_profile": "small",
-        "cache_dir": ".cache/sentence-transformers",
-        "device": "auto",
+        "default_profile": "openai-small",
         "profiles": {
-            "small": {
-                "label": "Small",
-                "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+            "openai-small": {
+                "label": "OpenAI text-embedding-3-small",
+                "model_name": "text-embedding-3-small",
+                "provider": "openai",
             },
-            "medium": {
-                "label": "Medium",
-                "model_name": "sentence-transformers/all-mpnet-base-v2",
+            "openai-large": {
+                "label": "OpenAI text-embedding-3-large",
+                "model_name": "text-embedding-3-large",
+                "provider": "openai",
             },
         },
     },
@@ -31,6 +31,7 @@ DEFAULT_CONFIG = {
         "stage1_threshold": 0.3,
         "stage2_threshold": 0.3,
         "stage3_threshold": 0.3,
+        "stage1_mode": "skill_match",
         "semantic_min_cosine": 0.25,
         "exact_skill_weight": 0.5,
         "fuzzy_skill_weight": 0.2,
