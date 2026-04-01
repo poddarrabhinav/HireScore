@@ -951,6 +951,10 @@ tbody td {
   vertical-align: middle;
 }
 
+.table-wrap tbody td {
+  color: #1f2933;
+}
+
 tbody tr:last-child > td {
   border-bottom: none;
 }
